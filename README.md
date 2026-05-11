@@ -18,6 +18,45 @@ The system validates incoming tickets, classifies them using AI and rule-based f
 - Delivery status tracking
 - SMTP email routing for non-technical tickets
 
+## HW1 Modifications
+
+For the HW1 requirements, the foundation of the triage system was built in `main.py`:
+
+- Initialized FastAPI application and created the primary webhook endpoint.
+- Established initial input payload format:
+  - `customer_name`
+  - `customer_email`
+  - `message`
+- Integrated Groq API (`llama-3.1-8b-instant`) for AI-based classification.
+- Defined base categories for ticket triage:
+  - `Bug`
+  - `Billing`
+  - `Feature Request`
+  - `General`
+- Implemented IF/Switch branching logic to handle routing based on AI output.
+- Added Slack webhook integration to send real-time alerts specifically for the `Bug` category.
+- Created simulated actions (print statements and JSON responses) for non-bug categories (e.g., "Simulated email to Finance Department").
+
+## HW2 Modifications
+
+For the HW2 requirements, the focus shifted to data persistence and tracking in `main.py`:
+
+- Added Google Sheets integration to act as a database for incoming tickets.
+- Implemented Google Service Account authentication (`credentials.json`) or `gspread` connection logic.
+- Created a `save_to_sheets` function to append incoming ticket data as a new row.
+- Defined the initial metadata fields stored in Google Sheets:
+  - `timestamp`
+  - `customer_name`
+  - `customer_email`
+  - `message`
+  - `category`
+  - `Priority` (Hardcoded as "Pending")
+  - `Status` (Hardcoded as "Open")
+- Refined Groq AI prompt instructions for strictly deterministic output.
+- Improved error handling and fallback logic if the Groq API call fails (defaulting to `General`).
+
+
+
 ## HW3 Modifications
 
 For the HW3 requirements, the following updates were implemented in `main.py`:
