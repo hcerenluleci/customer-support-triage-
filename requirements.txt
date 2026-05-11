@@ -4,5 +4,5 @@ pydantic
 httpx
 python-dotenv
 groq
+gspread
 google-auth
-google-api-python-client
